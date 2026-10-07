@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
+
+export const revalidate = 60
 import Footer from '@/components/Footer'
 import ProductCard from '@/components/ProductCard'
 import NewsletterForm from '@/components/NewsletterForm'

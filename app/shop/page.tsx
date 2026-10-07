@@ -4,6 +4,8 @@ import ProductCard from '@/components/ProductCard'
 import { createClient } from '@/lib/supabase/server'
 import { CATEGORIES } from '@/lib/config'
 
+export const revalidate = 60
+
 export default async function ShopPage({
   searchParams,
 }: {
