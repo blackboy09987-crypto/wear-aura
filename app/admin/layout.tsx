@@ -1,15 +1,6 @@
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = await cookies()
-  const auth = cookieStore.get('admin_auth')?.value
-
-  if (auth !== process.env.ADMIN_PASSWORD) {
-    redirect('/admin/login')
-  }
-
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-bg text-fg font-sans">
       <header className="border-b border-border px-6 py-4 flex items-center justify-between">
