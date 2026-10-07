@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
 
 export async function POST(req: NextRequest) {
   const { password } = await req.json()
@@ -8,14 +7,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const cookieStore = await cookies()
-  cookieStore.set('admin_auth', password, {
+  const response = NextResponse.json({ ok: true })
+  response.cookies.set('admin_auth', password, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
     sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
+    maxAge: 60 * 60 * 24 * 7,
     path: '/',
   })
 
-  return NextResponse.json({ ok: true })
+  return response
 }
